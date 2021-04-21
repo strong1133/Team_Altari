@@ -2,12 +2,14 @@ import React from "react";
 import Swal from "sweetalert2";
 import styled from "styled-components";
 import { Grid, Text, Input, Button } from '../elements';
+import { actionCreators as userActions } from '../redux/modules/user';
+import { useDispatch} from "react-redux";
 
 const Signup = (props) => {
  
  const [id,setId] = React.useState('');
  const [pw,setPw] = React.useState('');
-
+ const dispatch = useDispatch();
  const signup = () => {
   
   if (id.length === 0) {
@@ -29,6 +31,7 @@ const Signup = (props) => {
    return false;
   }
 
+   dispatch(userActions.signupDB(id, pw));
  }
 
 

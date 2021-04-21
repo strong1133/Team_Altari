@@ -1,3 +1,4 @@
 import Header from './Header';
-
-export { Header };
+import Editor from './Editor';
+import PostTable from './PostTable';
+export { Header,Editor,PostTable };

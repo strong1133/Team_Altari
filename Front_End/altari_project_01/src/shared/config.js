@@ -1,5 +1,5 @@
 
 const config = {
-api: 'http://localhost:8080',
+api: 'http://54.180.142.197',
 };
 export {config};

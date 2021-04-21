@@ -1,26 +1,31 @@
 import React from "react";
 import { ConnectedRouter } from "connected-react-router";
-import { Route } from "react-router-dom";
+import { BrowserRouter, Route } from "react-router-dom";
 import { history } from "../redux/configStore";
 import styled from 'styled-components';
 import axios from "axios";
 import { config } from "./config";
-const hello = () => {
-  axios({
-    method: 'get',
-    url:`${config.api}/api/hello`,
-  }).then((res) => {
-    console.log(res.data);
-  })
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import '../scss/main.scss';
+import {Login,Signup,PostList,PostWrite} from '../pages';
+import { Header } from '../components';
 
-}
 
 
 function App() {
  
   return (
     <React.Fragment>
-      <button onClick={hello}>서버 요청</button>
+    <Header/>
+    <ConnectedRouter history={history}>
+        <Route path='/' exact component={PostList} />
+        <Route path='/login' exact component={Login} />
+        <Route path='/signup' exact component={Signup} />
+        <Route path='/write' exact component={PostWrite} />
+        
+    </ConnectedRouter>
+    
     </React.Fragment>
   );
 }

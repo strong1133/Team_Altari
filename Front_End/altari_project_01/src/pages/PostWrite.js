@@ -24,6 +24,7 @@ const PostWrite = (props) => {
    onChange={ ( event, editor ) => {
        const data = editor.getData();
        setContents(data);
+       console.log(data);
        
    } }
    onBlur={ ( event, editor ) => {

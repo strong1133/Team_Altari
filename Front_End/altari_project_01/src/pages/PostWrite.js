@@ -10,11 +10,7 @@ const PostWrite = (props) => {
 
  const [title, setTitle] = React.useState('');
  const [contents, setContents] = React.useState('');
- console.log(contents);
-
-
-
-
+ 
  return (
   <ContainerBox>
          <Input placeholder='제목을 입력해주세요.' padding='10px' _onChange={(e) => { setTitle(e.target.value) }} value={title}/>

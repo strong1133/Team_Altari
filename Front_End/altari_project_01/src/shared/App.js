@@ -1,20 +1,29 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { ConnectedRouter } from "connected-react-router";
 import { BrowserRouter, Route } from "react-router-dom";
 import { history } from "../redux/configStore";
 import styled from 'styled-components';
-import axios from "axios";
-import { config } from "./config";
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import '../scss/main.scss';
 import {Login,Signup,PostList,PostWrite,PostDetail} from '../pages';
 import { Header } from '../components';
-
+import { useDispatch } from 'react-redux';
+import { getCookie } from './Cookie';
+import { actionCreators as userAction } from '../redux/modules/user';
 
 
 function App() {
  
+  const dispatch = useDispatch();
+  const token = getCookie('token') ? true : false;
+  
+  React.useEffect(() => {
+    
+    if (token) {
+      dispatch(userAction.loginCheckDB());
+    }
+
+  }, []);
+
   return (
     <React.Fragment>
     <Header/>

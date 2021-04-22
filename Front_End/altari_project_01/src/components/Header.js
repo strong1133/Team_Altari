@@ -2,9 +2,13 @@ import React from 'react';
 import styled from 'styled-components';
 import { history } from '../redux/configStore';
 import { Grid } from '../elements';
+import { useSelector, useDispatch } from 'react-redux';
+import {actionCreators as userActions} from "../redux/modules/user";
 
 const Header = (props) => {
  
+  const userInfo = useSelector((state) => state.user.user);
+  const dispatch = useDispatch();
  return (
   <ContainerBox>
    <ContentBox>
@@ -12,8 +16,17 @@ const Header = (props) => {
      심심한 알타리들
     </Logo>
     <Grid flex margin='0px 20px 0px 0px'>
-     <Text className='cursor gap' onClick={() => {history.push('/signup') }}>회원가입</Text>
-     <Text className='cursor' onClick={() => {history.push('/login') }}>로그인</Text>
+         {userInfo ? (<React.Fragment>
+           <Text className='cursor gap' >{userInfo?.username}님</Text>
+            <Text className='cursor' onClick={() => { dispatch(userActions.logoutDB())}}>로그아웃</Text>
+         </React.Fragment>):
+           (<React.Fragment>
+            <Text className='cursor gap' onClick={() => { history.push('/signup') }}>회원가입</Text>
+            <Text className='cursor' onClick={() => { history.push('/login') }}>로그인</Text>
+            </React.Fragment>)}
+
+
+     
     </Grid>
     </ContentBox>
   </ContainerBox>

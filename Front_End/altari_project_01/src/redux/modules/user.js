@@ -68,36 +68,26 @@ const loginDB = (id, pwd) => {
        password: pwd,
      },
    }).then((res) => {
-     console.log(res.headers)
+     
      const userInfo = {
        username: id,
      }
      dispatch(setUser(userInfo));
-     let token = res.headers.get('Authorization');
+     let token = res.headers.authorization;
      setCookie('token',token );
      
-     axios.defaults.headers.common['Authorization'] = token;
+     axios.defaults.headers.common['authorization'] = token;
+     
+     Swal.fire({
+       text: '어서오세요, 알타리가 되셨습니다!',
+       confirmButtonColor: "#3D825A",
+     })
      history.push('/');
 
    }).catch((err) => {
      console.log(err);
    })
-  /* const API = `${config.api}/login`;
-   fetch(API, {
-     method: 'POST',
-     headers: {
-       'Content-Type': 'application/json',
-     },
-     body: JSON.stringify({
-       username: id,
-       password: pwd,
-     })
-   }).then((res) => {
-     
-     console.log(res.headers.get('Authorization'))
-     
-   })
-*/
+  
  }
 }
 
@@ -105,7 +95,7 @@ const loginCheckDB = () => {
  return function (dispatch, getState, { history }) {
   
    const token = getCookie('token');
-   axios.defaults.headers.common['Authorization'] = `${token}`;
+   axios.defaults.headers.common['Authorization'] = token;
 
    axios({
      method: 'get',
@@ -129,6 +119,10 @@ const logoutDB = () => {
    deleteCookie('token');
    axios.defaults.headers.common['Authorization'] = null;
    delete axios.defaults.headers.common['Authorization'];
+   Swal.fire({
+     text: '잘가요, 당신은 알타리에서 해방되었숩니다..',
+     confirmButtonColor: "#3D825A",
+   })
    dispatch(logOut());
    history.replace('/');
  }

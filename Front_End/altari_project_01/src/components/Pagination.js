@@ -1,13 +1,21 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useSelector, useDispatch } from 'react-redux';
+/*const Pagination = ({ postPerpage,totalPost,paginate}) => {*/
+import { actionCreators as postActions } from '../redux/modules/post';
 
-const Pagination = ({ postPerpage,totalPost,paginate}) => {
- 
+const Pagination = () => {
+ const dispatch = useDispatch();
+ const maxPage = useSelector((state) => state.post.maxpage);
  const pageNumber = [];
- for (let i = 1; i <= Math.ceil(totalPost / postPerpage); i++) {
+ /*for (let i = 1; i <= Math.ceil(totalPost / postPerpage); i++) {
   pageNumber.push(i);
  }
-
+*/
+for (let i = 1; i <= maxPage; i++) {
+  pageNumber.push(i);
+ }
+  
  return (
   <ContainerBox>
    <PageBox>
@@ -15,7 +23,7 @@ const Pagination = ({ postPerpage,totalPost,paginate}) => {
      {pageNumber.map(number => {
       return (
        <PageLi key={number} onClick={() => {
-        paginate(number);      
+          dispatch(postActions.getPostDB(number));
        }}>
         {number}
        </PageLi>

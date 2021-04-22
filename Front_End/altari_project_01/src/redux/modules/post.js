@@ -90,7 +90,6 @@ const getMaxPageDB = () => {
       method: 'get',
       url: `${config.api}/api/article/maxpage`,
     }).then((res) => {
-      
       dispatch(maxPage(res.data));
     }).then(
       dispatch(getPostDB(1))

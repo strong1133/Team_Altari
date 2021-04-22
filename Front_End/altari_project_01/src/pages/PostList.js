@@ -111,8 +111,9 @@ const PostList = (props) => {
   <ContainerBox>
    <ContentBox>
        <PostTable post={currentPost(postList)} />
-       <Pagination postPerpage={postPerPage} totalPost={postList.length} paginate={setCurrentPage}/>
-   <BtnBox>
+       {/* <Pagination postPerpage={postPerPage} totalPost={postList.length} paginate={setCurrentPage}/> */}
+         <Pagination/>
+       <BtnBox>
     <Button width='120px' padding='10px' _onClick={() => {history.push('/write') }}>글쓰기</Button>
    </BtnBox>
    </ContentBox>

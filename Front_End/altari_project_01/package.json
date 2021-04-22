@@ -23,6 +23,7 @@
     "redux-actions": "^2.6.5",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
+    "sass": "^1.32.11",
     "styled-components": "^5.2.3",
     "sweetalert2": "^10.16.4",
     "web-vitals": "^1.0.1"

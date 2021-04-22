@@ -68,7 +68,6 @@ const loginDB = (id, pwd) => {
        password: pwd,
      },
    }).then((res) => {
-  
      console.log(res.headers)
      const userInfo = {
        username: id,

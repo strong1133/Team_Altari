@@ -18,7 +18,8 @@ public class CorsConfig {
         configuration.addAllowedOrigin("http://**");
         configuration.addAllowedHeader("*");
         configuration.addAllowedMethod("*");
-        source.registerCorsConfiguration("/api/**", configuration);
+        configuration.setMaxAge(3600L);
+        source.registerCorsConfiguration("/**", configuration);
         return new CorsFilter(source);
 
     }

@@ -5,10 +5,14 @@ import { Button, Input } from '../elements';
 import { Editor } from '../components';
 import '../scss/editor.scss';
 import { history } from '../redux/configStore';
+import { useDispatch } from "react-redux";
+import { actionCreators as postActions } from '../redux/modules/post';
+
 const PostWrite = (props) => {
 
  const [title, setTitle] = React.useState('');
  const [contents, setContents] = React.useState('');
+ const dispatch = useDispatch();
  console.log(contents);
     
 function onEditorChange(value) {
@@ -33,6 +37,7 @@ const writePost = () => {
         })
         return false;
     }
+    dispatch(postActions.addPostDB(title, contents));
 }
 
 

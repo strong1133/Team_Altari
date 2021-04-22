@@ -4,13 +4,22 @@ import styled from "styled-components";
 import { Button } from '../elements';
 import { PostTable,Pagination } from '../components';
 import { history } from '../redux/configStore';
-
+import { useSelector, useDispatch } from 'react-redux';
+import post, { actionCreators as postAction } from '../redux/modules/post';
 const PostList = (props) => {
  
 
+  const dispatch = useDispatch();
+
+  React.useEffect(() => {
+    
+    dispatch(postAction.getMaxPageDB());
+
+  }, []);
+
   const [currentPage, setCurrentPage] = React.useState(1);
   const [postPerPage, setPostPerPage] = React.useState(5);
-  const postList = [{
+  /*const postList = [{
     id: 1,
     author: 'youngeun',
     title: '알타리 할 수 있어!!',
@@ -83,6 +92,10 @@ const PostList = (props) => {
     createAt: '2021-04-18',
   },
   ]
+*/
+  
+  const postList = useSelector((state) => state.post.list);
+  
 
   const indexOfLsat = currentPage * postPerPage;
   const indexOfFirst = indexOfLsat - postPerPage;

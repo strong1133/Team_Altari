@@ -5,6 +5,8 @@ import { history } from '../redux/configStore';
 
 const PostTable = (props) => {
 
+  const postList = props.post;
+
  return (
   
    <Table>
@@ -17,22 +19,22 @@ const PostTable = (props) => {
        </thead>
     <tbody>
      
-     <tr>
+     {/* <tr>
       <td>youngeun</td>
       <td>사실 김치는 깍두기가 제일 좋아.</td>
       <td>2021.04.21</td>
-     </tr>
-        {/* {postList.map((p) => {
-         console.log(p)
+     </tr> */}
+        {postList.map((p) => {
+         
          return (
           <tr key={p.id} onClick={()=> history.push(`/post/${p.id}`)}>
-           <td>{p.no}</td>
            <td>{p.author}</td>
            <td>{p.title}</td>
-         </tr>
+           <td>{p.createAt}</td>
+           </tr>
          )
 
-        })} */}
+        })} 
         
       </tbody>
       </Table>
@@ -90,6 +92,9 @@ const Table = styled.table`
    & td{
      &:nth-child(1){
       width:20%;
+    }
+    &:nth-child(3){
+       width:30%;
      }
  }
  }

@@ -8,7 +8,7 @@ import { config } from "./config";
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import '../scss/main.scss';
-import {Login,Signup,PostList,PostWrite} from '../pages';
+import {Login,Signup,PostList,PostWrite,PostDetail} from '../pages';
 import { Header } from '../components';
 
 
@@ -23,6 +23,7 @@ function App() {
         <Route path='/login' exact component={Login} />
         <Route path='/signup' exact component={Signup} />
         <Route path='/write' exact component={PostWrite} />
+        <Route path='/post/:id' exact component={PostDetail} />
         
     </ConnectedRouter>
     

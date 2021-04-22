@@ -60,7 +60,6 @@ const loginDB = (id, pwd) => {
    if (!id || !pwd) {
      return false;
    }
-   
    axios({
      method: 'post',
      url: `${config.api}/login`,
@@ -69,21 +68,37 @@ const loginDB = (id, pwd) => {
        password: pwd,
      },
    }).then((res) => {
-     
+  
+     console.log(res.headers)
      const userInfo = {
        username: id,
      }
      dispatch(setUser(userInfo));
-     setCookie('token', res.headers.get('Authorization'));
+     let token = res.headers.get('Authorization');
+     setCookie('token',token );
      
-     axios.defaults.headers.common['Authorization'] = res.headers.get('Authorization');
+     axios.defaults.headers.common['Authorization'] = token;
      history.push('/');
 
    }).catch((err) => {
      console.log(err);
    })
-   
-
+  /* const API = `${config.api}/login`;
+   fetch(API, {
+     method: 'POST',
+     headers: {
+       'Content-Type': 'application/json',
+     },
+     body: JSON.stringify({
+       username: id,
+       password: pwd,
+     })
+   }).then((res) => {
+     
+     console.log(res.headers.get('Authorization'))
+     
+   })
+*/
  }
 }
 

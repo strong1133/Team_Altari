@@ -50,7 +50,6 @@ export default PostTable;
 const Table = styled.table`
  width: 100%;
  margin: 0 auto;
-
  & tr{
 
   &:hover{
@@ -70,6 +69,7 @@ const Table = styled.table`
  border-bottom: 1px solid #C9C9C9;
  text-align: center;
  cursor: pointer;
+ vertical-align: middle;
 }
 
  & th,td{

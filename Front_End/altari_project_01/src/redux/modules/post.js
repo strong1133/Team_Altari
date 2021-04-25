@@ -55,11 +55,10 @@ const getPostDB = (pageNum) => {
 const addPostDB = (title, contents) => {
   return function (dispatch, getState, { history }) {
     
-    console.log(title,contents)
+    console.log(contents)
     if (!title || !contents) {
       return false;
     }
-
     axios({
       method: 'post',
       url: `${config.api}/api/article`,
@@ -69,6 +68,8 @@ const addPostDB = (title, contents) => {
       },
     }).then((res) => {
       
+     
+
       let _post = {
         id: res.data.id,
         author: res.data.author,

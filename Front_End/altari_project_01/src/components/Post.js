@@ -6,14 +6,15 @@ import { useSelector, useDispatch } from 'react-redux';
 import Swal from "sweetalert2";
 
 const Post = (props) => {
- const dispatch = useDispatch();
+  const dispatch = useDispatch();
+  console.log(props)
  return (
   <ContainerBox>
      <ContentsBox>
       <Text size='21px'>{props.post?.title}</Text>
       <Text size='18px' margin='14px 0px 0px 0px'>{props.post?.author}</Text>
-      <Content>
-       <Text>{props.post?.comment}</Text>
+       <Content dangerouslySetInnerHTML={{__html: props.post?.contents}}>
+       
       </Content>
       <BtnBox>
        <Grid padding='0px 0px 0px 5px'>

@@ -10,7 +10,7 @@ const PostList = (props) => {
  
 
   const dispatch = useDispatch();
-
+  const user = useSelector((state) => state.user.user);
   React.useEffect(() => {
     
     dispatch(postAction.getMaxPageDB());
@@ -114,7 +114,20 @@ const PostList = (props) => {
        {/* <Pagination postPerpage={postPerPage} totalPost={postList.length} paginate={setCurrentPage}/> */}
          <Pagination/>
        <BtnBox>
-    <Button width='120px' padding='10px' _onClick={() => {history.push('/write') }}>글쓰기</Button>
+         <Button width='120px' padding='10px' _onClick={() => {
+           
+           if (!user) {
+
+             Swal.fire({
+               text: '로그인 후 사용해주세요!',
+               confirmButtonColor: '#3D825A',  
+             })
+             return false;
+            }
+
+           history.push('/write');
+
+    }}>글쓰기</Button>
    </BtnBox>
    </ContentBox>
   </ContainerBox>

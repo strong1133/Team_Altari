@@ -13,7 +13,7 @@ const PostWrite = (props) => {
  const [title, setTitle] = React.useState('');
  const [contents, setContents] = React.useState('');
  const dispatch = useDispatch();
- console.log(contents);
+
     
 function onEditorChange(value) {
     setContents(value);

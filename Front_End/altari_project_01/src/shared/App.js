@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { ConnectedRouter } from "connected-react-router";
-import { BrowserRouter, Route } from "react-router-dom";
+import { BrowserRouter, Route, Redirect } from "react-router-dom";
 import { history } from "../redux/configStore";
 import styled from 'styled-components';
 import '../scss/main.scss';
@@ -20,6 +20,9 @@ function App() {
     
     if (token) {
       dispatch(userAction.loginCheckDB());
+    }else{
+      console.log("로그인 안됬음")
+      history.push('/login');
     }
 
   }, []);

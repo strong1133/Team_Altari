@@ -38,7 +38,6 @@ function App() {
         <Route path='/post/:id' exact component={PostDetail} />
         
     </ConnectedRouter>
-    
     </React.Fragment>
   );
 }
